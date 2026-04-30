@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    valid-order.xml
+    A well-formed, schema-valid Order XML document for Lab 4 curl testing.
+
+    Usage:
+      curl -X POST http://localhost:8080/entities-lab/api/orders/xml \
+           -H 'Content-Type: application/xml' \
+           -d @src/test/resources/xml/valid-order.xml
+-->
+<order xmlns="http://example.com/shop/orders"
+       orderId="ORD-2024-TEST"
+       status="PROCESSING">
+    <customerName>Jane Smith</customerName>
+    <customerEmail>jane@example.com</customerEmail>
+    <orderDate>2024-06-15</orderDate>
+    <deliveryAddress>
+        <street>10 Downing Street</street>
+        <city>London</city>
+        <postCode>SW1A 2AA</postCode>
+        <country>GB</country>
+    </deliveryAddress>
+    <lines>
+        <line sku="BK-001">
+            <productName>Clean Code</productName>
+            <quantity>2</quantity>
+            <unitPrice>29.99</unitPrice>
+        </line>
+    </lines>
+    <totalAmount>59.98</totalAmount>
+</order>

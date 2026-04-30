@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+             https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <display-name>Lifecycle Lab API</display-name>
+    <description>Content and Lifecycle in JEE — Hands-On Lab</description>
+
+    <!-- ── Context init-params — read via ServletContext.getInitParameter() ── -->
+
+    <!-- Lab 1 Task 1.1 — read this with ctx.getInitParameter("app.version") -->
+    <context-param>
+        <param-name>app.version</param-name>
+        <param-value>2.4.1</param-value>
+    </context-param>
+
+    <!-- Lab 1 Task 1.1 — parse to boolean -->
+    <context-param>
+        <param-name>feature.payments.enabled</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <!-- Lab 1 Task 1.1 — parse to long -->
+    <context-param>
+        <param-name>upload.max.bytes</param-name>
+        <param-value>10485760</param-value>
+    </context-param>
+
+    <!-- ── JNDI resource declaration (required for Tomcat @Resource injection) ── -->
+    <resource-ref>
+        <res-ref-name>jdbc/shopDB</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+
+</web-app>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifecycle Lab</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 60px auto; color: #1e293b; }
+        h1 { color: #1747a4; }
+        p { line-height: 1.6; }
+        .badge { display: inline-block; background: #0e6b5e; color: white;
+                 padding: 4px 12px; border-radius: 4px; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <span class="badge">JEE Lab</span>
+    <h1>Welcome to the Lifecycle Lab</h1>
+    <p>
+        This HTML file lives at <code>/WEB-INF/templates/welcome.html</code> inside the WAR.
+        It was read using <code>ServletContext.getResourceAsStream()</code>.
+    </p>
+    <p>
+        This demonstrates that you can serve server-side content from files bundled inside
+        the WAR without exposing them directly via the web server.
+    </p>
+    <p>
+        <strong>Key point:</strong> Files inside <code>/WEB-INF/</code> cannot be accessed
+        directly by a browser URL — they must be served programmatically.
+    </p>
+</body>
+</html>

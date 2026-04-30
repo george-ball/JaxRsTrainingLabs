@@ -1,0 +1,13 @@
+com/example/api/repository/ProductRepository.class
+com/example/api/resource/HealthResource$HealthStatus.class
+com/example/api/resource/HealthResource.class
+com/example/api/converter/LocalDateConverterProvider.class
+com/example/api/resource/ContentResource.class
+com/example/api/storage/FileStorage.class
+com/example/api/resource/FileResource.class
+com/example/api/ParamsApplication.class
+com/example/api/filter/ProductFilter.class
+com/example/api/converter/LocalDateConverterProvider$1.class
+com/example/api/model/OrderStatus.class
+com/example/api/resource/ParamTestResource.class
+com/example/api/model/Product.class

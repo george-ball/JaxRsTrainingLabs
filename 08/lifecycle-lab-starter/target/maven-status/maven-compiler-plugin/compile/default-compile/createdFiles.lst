@@ -1,0 +1,14 @@
+com/example/api/resource/JndiResource.class
+com/example/api/security/UserPrincipal.class
+com/example/api/resource/ConfigResource.class
+com/example/api/resource/HealthResource$HealthStatus.class
+com/example/api/resource/HealthResource.class
+com/example/api/resource/ProductResource.class
+com/example/api/filter/BearerTokenFilter.class
+com/example/listener/AppLifecycleListener.class
+com/example/api/security/BearerSecurityContext.class
+com/example/api/security/TokenStore.class
+com/example/api/resource/AdminResource.class
+com/example/api/resource/SecuredOrderResource.class
+com/example/api/filter/Secured.class
+com/example/api/LifecycleApplication.class

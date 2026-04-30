@@ -1,0 +1,17 @@
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/adapter/CurrencyAdapter.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/adapter/LocalDateAdapter.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/api/EntitiesApplication.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/api/HealthResource.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/api/OrderResource.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/api/ProductResource.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/model/Address.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/model/Order.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/model/OrderLine.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/model/OrderStatus.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/model/Product.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/provider/JaxbContextResolver.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/provider/ProductCsvReader.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/provider/ProductCsvWriter.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/provider/ValidatingOrderReader.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/repository/OrderRepository.java
+/Users/george/work/newjaxws/07/entities-lab-starter/src/main/java/com/example/repository/ProductRepository.java

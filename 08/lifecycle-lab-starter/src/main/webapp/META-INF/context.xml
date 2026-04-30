@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Tomcat context.xml
+    Declares JNDI resources registered by Tomcat at deployment time.
+
+    Lab 2: app.version Environment entry → java:comp/env/app.version
+    Lab 3: jdbc/shopDB DataSource      → java:comp/env/jdbc/shopDB
+
+    In application code:
+        Context ic = new InitialContext();
+        Object resource = ic.lookup("java:comp/env/<name>");
+-->
+<Context>
+
+    <!-- Lab 2 — Named string constant readable via JNDI -->
+    <Environment name="app.version"
+                 type="java.lang.String"
+                 value="2.4.1"
+                 override="false"/>
+
+    <!-- Lab 3 — H2 in-memory DataSource via Tomcat DBCP2 connection pool -->
+    <Resource name="jdbc/shopDB"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="org.h2.Driver"
+              url="jdbc:h2:mem:shopdb;DB_CLOSE_DELAY=-1;MODE=PostgreSQL;INIT=RUNSCRIPT FROM 'classpath:sql/init.sql'"
+              username="sa"
+              password=""
+              maxTotal="5"
+              maxIdle="3"
+              maxWaitMillis="5000"
+              testOnBorrow="true"
+              validationQuery="SELECT 1"/>
+
+</Context>

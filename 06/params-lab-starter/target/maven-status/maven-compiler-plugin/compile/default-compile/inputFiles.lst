@@ -1,0 +1,11 @@
+/Users/george/work/newjaxws/06/params-lab-starter/src/main/java/com/example/api/ParamsApplication.java
+/Users/george/work/newjaxws/06/params-lab-starter/src/main/java/com/example/api/converter/LocalDateConverterProvider.java
+/Users/george/work/newjaxws/06/params-lab-starter/src/main/java/com/example/api/filter/ProductFilter.java
+/Users/george/work/newjaxws/06/params-lab-starter/src/main/java/com/example/api/model/OrderStatus.java
+/Users/george/work/newjaxws/06/params-lab-starter/src/main/java/com/example/api/model/Product.java
+/Users/george/work/newjaxws/06/params-lab-starter/src/main/java/com/example/api/repository/ProductRepository.java
+/Users/george/work/newjaxws/06/params-lab-starter/src/main/java/com/example/api/resource/ContentResource.java
+/Users/george/work/newjaxws/06/params-lab-starter/src/main/java/com/example/api/resource/FileResource.java
+/Users/george/work/newjaxws/06/params-lab-starter/src/main/java/com/example/api/resource/HealthResource.java
+/Users/george/work/newjaxws/06/params-lab-starter/src/main/java/com/example/api/resource/ParamTestResource.java
+/Users/george/work/newjaxws/06/params-lab-starter/src/main/java/com/example/api/storage/FileStorage.java
