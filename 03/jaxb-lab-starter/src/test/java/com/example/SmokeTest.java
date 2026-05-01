@@ -2,6 +2,7 @@ package com.example;
 
 import com.example.adapter.CurrencyAdapter;
 import com.example.model.*;
+import com.example.model.Order;
 import com.example.util.OrderFixtures;
 import org.junit.jupiter.api.*;
 

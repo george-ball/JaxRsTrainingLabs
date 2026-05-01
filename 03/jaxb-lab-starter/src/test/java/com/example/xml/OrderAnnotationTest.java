@@ -2,10 +2,14 @@ package com.example.xml;
 
 import com.example.model.Order;
 import com.example.util.OrderFixtures;
-import jakarta.xml.bind.*;
+import javax.xml.bind.*;
 import org.junit.jupiter.api.*;
 
 import javax.xml.XMLConstants;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import java.io.StringReader;

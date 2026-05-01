@@ -27,7 +27,7 @@ public class CurrencyAdapter extends XmlAdapter<String, BigDecimal> {
 
     @Override
     public BigDecimal unmarshal(String value) {
-        if (value == null || value.isEmpty()) {
+        if (value == null || value.isBlank()) {
             return null;
         }
         return new BigDecimal(value.trim()).setScale(SCALE, ROUNDING);
