@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    sample-order.xml
+    ─────────────────────────────────────────────────────────────────────────
+    A valid Order XML document for use in manual curl testing (Lab 4).
+
+    Usage:
+      curl -X POST http://localhost:8080/jaxb-lab/api/orders \
+           -H 'Content-Type: application/xml' \
+           -d @src/test/resources/xml/sample-order.xml
+
+    This document validates against src/main/resources/xsd/order-schema.xsd.
+    ─────────────────────────────────────────────────────────────────────────
+-->
+<order xmlns="http://example.com/shop/orders"
+       orderId="ORD-2024-001"
+       status="PROCESSING">
+
+    <customerName>Jane Smith</customerName>
+    <customerEmail>jane@example.com</customerEmail>
+    <orderDate>2024-06-15</orderDate>
+
+    <deliveryAddress>
+        <street>10 Downing Street</street>
+        <city>London</city>
+        <postCode>SW1A 2AA</postCode>
+        <country>GB</country>
+    </deliveryAddress>
+
+    <lines>
+        <line sku="BK-001">
+            <productName>Clean Code</productName>
+            <quantity>2</quantity>
+            <unitPrice>29.99</unitPrice>
+            <lineTotal>59.98</lineTotal>
+        </line>
+        <line sku="BK-002">
+            <productName>Effective Java</productName>
+            <quantity>1</quantity>
+            <unitPrice>39.99</unitPrice>
+            <lineTotal>39.99</lineTotal>
+        </line>
+    </lines>
+
+    <totalAmount>99.97</totalAmount>
+
+</order>

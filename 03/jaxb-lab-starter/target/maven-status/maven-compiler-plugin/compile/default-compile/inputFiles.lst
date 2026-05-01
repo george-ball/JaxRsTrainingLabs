@@ -1,0 +1,11 @@
+/Users/george/work/newjaxws/03/jaxb-lab-starter/src/main/java/com/example/adapter/CurrencyAdapter.java
+/Users/george/work/newjaxws/03/jaxb-lab-starter/src/main/java/com/example/adapter/LocalDateAdapter.java
+/Users/george/work/newjaxws/03/jaxb-lab-starter/src/main/java/com/example/batch/OrderBatchProcessor.java
+/Users/george/work/newjaxws/03/jaxb-lab-starter/src/main/java/com/example/model/Address.java
+/Users/george/work/newjaxws/03/jaxb-lab-starter/src/main/java/com/example/model/Order.java
+/Users/george/work/newjaxws/03/jaxb-lab-starter/src/main/java/com/example/model/OrderLine.java
+/Users/george/work/newjaxws/03/jaxb-lab-starter/src/main/java/com/example/model/OrderStatus.java
+/Users/george/work/newjaxws/03/jaxb-lab-starter/src/main/java/com/example/util/OrderFixtures.java
+/Users/george/work/newjaxws/03/jaxb-lab-starter/src/main/java/com/example/web/JaxbContextListener.java
+/Users/george/work/newjaxws/03/jaxb-lab-starter/src/main/java/com/example/web/OrderServlet.java
+/Users/george/work/newjaxws/03/jaxb-lab-starter/src/main/java/com/example/xml/OrderXmlUtil.java

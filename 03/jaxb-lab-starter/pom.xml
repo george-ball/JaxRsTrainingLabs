@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.example</groupId>
+  <artifactId>jaxb-lab</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>JAXB Lab Starter</name>
+  <description>
+    Starter project for JAXB hands-on labs.
+    Platform: Java 11 LTS / Tomcat 9.0 / JAXB 2.3 (jakarta.xml.bind)
+  </description>
+
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <!-- Dependency versions -->
+    <jaxb.api.version>2.3.3</jaxb.api.version>
+    <jaxb.impl.version>2.3.8</jaxb.impl.version>
+    <junit.version>5.10.2</junit.version>
+  </properties>
+
+  <dependencies>
+
+    <!-- ══════════════════════════════════════════════════
+         JAXB — removed from JDK in Java 9 (JEP 320)
+         Must be added explicitly for Java 11 projects.
+         ══════════════════════════════════════════════════ -->
+
+    <!-- JAXB API (jakarta.xml.bind.* package namespace) -->
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>${jaxb.api.version}</version>
+    </dependency>
+
+    <!-- JAXB reference implementation (runtime) -->
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-impl</artifactId>
+      <version>${jaxb.impl.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!-- XJC compiler — for the schema-first path (Lab 1) -->
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-xjc</artifactId>
+      <version>${jaxb.impl.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- ══════════════════════════════════════════════════
+         SERVLET API — provided by Tomcat 9 at runtime
+         ══════════════════════════════════════════════════ -->
+
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>4.0.4</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- ══════════════════════════════════════════════════
+         TEST DEPENDENCIES
+         ══════════════════════════════════════════════════ -->
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <finalName>jaxb-lab</finalName>
+    <plugins>
+
+      <!-- Java 11 compiler -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.12.1</version>
+        <configuration>
+          <release>11</release>
+        </configuration>
+      </plugin>
+
+      <!-- WAR plugin — no web.xml required (Servlet 3+) -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.4.0</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+
+      <!-- JUnit 5 test runner -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+        <configuration>
+          <useModulePath>false</useModulePath>
+        </configuration>
+      </plugin>
+
+      <!-- ══════════════════════════════════════════════
+           JAXB2 Maven Plugin — runs xjc automatically
+           during the generate-sources phase.
+
+           LAB 1 — Task 1.3: run  mvn generate-sources
+           Generated classes appear in:
+             target/generated-sources/jaxb/com/example/library/model/
+           ══════════════════════════════════════════════ -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jaxb2-maven-plugin</artifactId>
+        <version>2.5.0</version>
+        <executions>
+          <execution>
+            <id>xjc-library</id>
+            <goals>
+              <goal>xjc</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <!-- Package for generated classes -->
+          <packageName>com.example.library.model</packageName>
+          <!-- Directory containing XSD files (plugin 2.5.0 syntax) -->
+          <sources>
+            <source>src/main/xsd/library.xsd</source>
+          </sources>
+
+
+          <!-- Where generated Java is written -->
+          <outputDirectory>
+            ${project.build.directory}/generated-sources/jaxb
+          </outputDirectory>
+          <!-- Do not wipe the output directory on each run -->
+          <clearOutputDir>false</clearOutputDir>
+          <!-- LAB 1 Task 1.5 — Binding customisation file -->
+          <xjbSources>
+            <xjbSource>src/main/xjb/bindings.xjb</xjbSource>
+          </xjbSources>
+        </configuration>
+      </plugin>
+
+      <!-- Tomcat 9 deploy plugin (optional — can also copy WAR manually) -->
+      <plugin>
+        <groupId>org.opoo.maven</groupId>
+        <artifactId>tomcat9-maven-plugin</artifactId>
+        <version>3.0.1</version>
+        <configuration>
+          <url>http://localhost:8080/manager/text</url>
+          <server>tomcat9</server>
+          <path>/jaxrs-lab</path>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>

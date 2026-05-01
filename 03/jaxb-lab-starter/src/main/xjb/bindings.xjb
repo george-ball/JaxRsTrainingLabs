@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    bindings.xjb — JAXB Binding Customisation File
+    ═══════════════════════════════════════════════════════════════════════
+    Lab 1 — Task 1.5
+
+    By default, xjc names generated classes after the XSD type names:
+        LibraryType → LibraryType.java   (not ideal)
+        BookType    → BookType.java      (not ideal)
+        GenreType   → GenreType.java     (OK as an enum name)
+
+    This file tells xjc to use shorter, cleaner class names.
+
+    How to activate:
+    1. Complete the TODO sections below.
+    2. In pom.xml, uncomment the <bindingFiles> section inside the
+       jaxb2-maven-plugin configuration.
+    3. Run:  mvn clean generate-sources
+    4. Verify the generated classes are named Library, Book, Genre.
+
+    Reference:
+        https://eclipse-ee4j.github.io/jaxb-ri/docs/ch04.html
+    ═══════════════════════════════════════════════════════════════════════
+-->
+<jaxb:bindings
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    version="2.1">
+
+
+    <jaxb:bindings schemaLocation="../xsd/library.xsd" node="/xs:schema">
+
+        <!-- ═══════════════════════════════════════════════════════
+             Task 1.5a — Rename LibraryType → Library
+             ═══════════════════════════════════════════════════════ -->
+        <!-- TODO:
+        <jaxb:bindings node="//xs:complexType[@name='LibraryType']">
+            <jaxb:class name="Library"/>
+        </jaxb:bindings>
+        -->
+
+        <!-- ═══════════════════════════════════════════════════════
+             Task 1.5b — Rename BookType → Book
+             ═══════════════════════════════════════════════════════ -->
+        <!-- TODO:
+        <jaxb:bindings node="//xs:complexType[@name='BookType']">
+            <jaxb:class name="Book"/>
+        </jaxb:bindings>
+        -->
+
+        <!-- ═══════════════════════════════════════════════════════
+             Task 1.5c — Rename GenreType enum → Genre
+             ═══════════════════════════════════════════════════════ -->
+        <!-- TODO:
+        <jaxb:bindings node="//xs:simpleType[@name='GenreType']">
+            <jaxb:typesafeEnumClass name="Genre"/>
+        </jaxb:bindings>
+        -->
+
+    </jaxb:bindings>
+
+</jaxb:bindings>

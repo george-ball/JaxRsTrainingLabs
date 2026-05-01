@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    library.xsd
+    ═══════════════════════════════════════════════════════════════════════
+    Lab 1 — Schema-First JAXB Development
+
+    Your task: complete the TODOs in this schema so that running
+        mvn generate-sources
+    produces the following Java classes in
+        target/generated-sources/jaxb/com/example/library/model/ :
+
+        Book.java        (from BookType)
+        Genre.java       (from GenreType enum)
+        Library.java     (from LibraryType — renamed via bindings.xjb)
+        ObjectFactory.java
+        package-info.java
+
+    Rules
+    ─────
+    • Every element that appears in the sample XML below must have a
+      matching xs:element or xs:attribute in this schema.
+    • Use xs:sequence for ordered element lists inside a complexType.
+    • Use xs:simpleType + xs:restriction for the Genre enumeration.
+    • Use xs:attribute for isbn and genre on BookType.
+    • Do NOT change the targetNamespace or elementFormDefault — the
+      sample XML and the generated package-info.java depend on them.
+
+    Sample XML your schema must validate:
+    ─────────────────────────────────────
+    <library xmlns="http://example.com/library"
+             name="City Central Library"
+             totalBooks="2">
+      <book isbn="978-0-13-235088-4" genre="TECHNOLOGY">
+        <title>Clean Code</title>
+        <author>Robert C. Martin</author>
+        <yearPublished>2008</yearPublished>
+        <availableCopies>3</availableCopies>
+      </book>
+      <book isbn="978-0-13-468599-1" genre="TECHNOLOGY">
+        <title>Effective Java</title>
+        <author>Joshua Bloch</author>
+        <yearPublished>2018</yearPublished>
+        <availableCopies>2</availableCopies>
+      </book>
+    </library>
+    ═══════════════════════════════════════════════════════════════════════
+-->
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://example.com/library"
+    targetNamespace="http://example.com/library"
+    elementFormDefault="qualified"
+    version="1.0">
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         Task 1.2a — Global root element
+         Declare a global element named "library" of type "LibraryType".
+         This is what xjc will make into the @XmlRootElement class.
+         ═══════════════════════════════════════════════════════════════ -->
+    <!-- TODO: <xs:element name="library" type="tns:LibraryType"/> -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         Task 1.2b — LibraryType complex type
+         Must contain:
+           • a sequence of one or more <book> elements  (xs:element ref or inline)
+           • a required "name" attribute (xs:string)
+           • an optional "totalBooks" attribute (xs:int)
+         ═══════════════════════════════════════════════════════════════ -->
+    <!-- TODO:
+    <xs:complexType name="LibraryType">
+        <xs:sequence>
+            ...
+        </xs:sequence>
+        <xs:attribute name="name"       type="xs:string" use="required"/>
+        <xs:attribute name="totalBooks" type="xs:int"    use="optional"/>
+    </xs:complexType>
+    -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         Task 1.2c — BookType complex type
+         Must contain a sequence of:
+           • title           xs:string   required
+           • author          xs:string   required
+           • yearPublished   xs:int      required
+           • availableCopies xs:int      optional  (default 0)
+         Plus attributes:
+           • isbn   xs:string  required
+           • genre  tns:GenreType  optional
+         ═══════════════════════════════════════════════════════════════ -->
+    <!-- TODO:
+    <xs:complexType name="BookType">
+        <xs:sequence>
+            ...
+        </xs:sequence>
+        <xs:attribute name="isbn"  type="xs:string"       use="required"/>
+        <xs:attribute name="genre" type="tns:GenreType"   use="optional"/>
+    </xs:complexType>
+    -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         Task 1.2d — GenreType enumeration
+         Allowed values: TECHNOLOGY, FICTION, NON_FICTION, SCIENCE,
+                         HISTORY, BIOGRAPHY, OTHER
+         Use xs:simpleType + xs:restriction base="xs:string"
+         ═══════════════════════════════════════════════════════════════ -->
+    <!-- TODO:
+    <xs:simpleType name="GenreType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TECHNOLOGY"/>
+            ...
+        </xs:restriction>
+    </xs:simpleType>
+    -->
+
+
+</xs:schema>

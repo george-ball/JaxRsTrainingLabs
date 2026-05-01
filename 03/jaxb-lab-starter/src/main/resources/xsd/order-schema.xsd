@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    order-schema.xsd
+    ─────────────────────────────────────────────────────────────────────────
+    XML Schema for the Order domain — used in Labs 2, 3, and 4.
+
+    This schema defines:
+      - OrderStatusType  (enumeration)
+      - AddressType      (complexType)
+      - LineItemType     (complexType)
+      - OrderType        (root complexType)
+      - <order>          (global element declaration)
+
+    LAB 2: You annotate the Java Order class to match this schema.
+    LAB 3: You attach this schema to the Unmarshaller for validation.
+    LAB 4: The Servlet's Unmarshaller validates incoming POST bodies against this.
+
+    Namespace: http://example.com/shop/orders
+    ─────────────────────────────────────────────────────────────────────────
+-->
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://example.com/shop/orders"
+    targetNamespace="http://example.com/shop/orders"
+    elementFormDefault="qualified">
+
+    <!-- ── Simple types ───────────────────────────────────────────────── -->
+
+    <xs:simpleType name="OrderStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NEW"/>
+            <xs:enumeration value="PROCESSING"/>
+            <xs:enumeration value="SHIPPED"/>
+            <xs:enumeration value="DELIVERED"/>
+            <xs:enumeration value="CANCELLED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- ── AddressType ────────────────────────────────────────────────── -->
+
+    <xs:complexType name="AddressType">
+        <xs:sequence>
+            <xs:element name="street"      type="xs:string"/>
+            <xs:element name="city"        type="xs:string"/>
+            <xs:element name="postCode"    type="xs:string"/>
+            <xs:element name="country"     type="xs:string" default="GB"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ── LineItemType ───────────────────────────────────────────────── -->
+
+    <xs:complexType name="LineItemType">
+        <xs:sequence>
+            <xs:element name="productName" type="xs:string"/>
+            <xs:element name="quantity"    type="xs:positiveInteger"/>
+            <xs:element name="unitPrice"   type="xs:decimal"/>
+            <xs:element name="lineTotal"   type="xs:decimal"/>
+        </xs:sequence>
+        <!-- sku is an XML attribute, not a child element -->
+        <xs:attribute name="sku" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <!-- ── OrderType (root complex type) ─────────────────────────────── -->
+
+    <xs:complexType name="OrderType">
+        <xs:sequence>
+            <xs:element name="customerName"     type="xs:string"/>
+            <xs:element name="customerEmail"    type="xs:string"/>
+            <xs:element name="orderDate"        type="xs:string"/>
+            <xs:element name="deliveryAddress"  type="tns:AddressType"
+                        minOccurs="0"/>
+            <xs:element name="lines">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="line"
+                                    type="tns:LineItemType"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="totalAmount"      type="xs:decimal"/>
+            <xs:element name="notes"            type="xs:string"
+                        minOccurs="0"/>
+        </xs:sequence>
+        <!-- orderId and status are XML attributes -->
+        <xs:attribute name="orderId" type="xs:string"             use="required"/>
+        <xs:attribute name="status"  type="tns:OrderStatusType"   use="required"/>
+    </xs:complexType>
+
+    <!-- ── Global element ─────────────────────────────────────────────── -->
+
+    <xs:element name="order" type="tns:OrderType"/>
+
+</xs:schema>

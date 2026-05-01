@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    order-schema.xsd (test copy)
+    This file is identical to src/main/resources/xsd/order-schema.xsd.
+    It is placed here so JUnit tests can load it via:
+        getClass().getResource("/xsd/order-schema.xsd")
+    which looks on the test classpath first.
+-->
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://example.com/shop/orders"
+    targetNamespace="http://example.com/shop/orders"
+    elementFormDefault="qualified">
+
+    <xs:simpleType name="OrderStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NEW"/>
+            <xs:enumeration value="PROCESSING"/>
+            <xs:enumeration value="SHIPPED"/>
+            <xs:enumeration value="DELIVERED"/>
+            <xs:enumeration value="CANCELLED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="AddressType">
+        <xs:sequence>
+            <xs:element name="street"   type="xs:string"/>
+            <xs:element name="city"     type="xs:string"/>
+            <xs:element name="postCode" type="xs:string"/>
+            <xs:element name="country"  type="xs:string" default="GB"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LineItemType">
+        <xs:sequence>
+            <xs:element name="productName" type="xs:string"/>
+            <xs:element name="quantity"    type="xs:positiveInteger"/>
+            <xs:element name="unitPrice"   type="xs:decimal"/>
+            <xs:element name="lineTotal"   type="xs:decimal"/>
+        </xs:sequence>
+        <xs:attribute name="sku" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="OrderType">
+        <xs:sequence>
+            <xs:element name="customerName"    type="xs:string"/>
+            <xs:element name="customerEmail"   type="xs:string"/>
+            <xs:element name="orderDate"       type="xs:string"/>
+            <xs:element name="deliveryAddress" type="tns:AddressType" minOccurs="0"/>
+            <xs:element name="lines">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="line" type="tns:LineItemType"
+                                    minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="totalAmount" type="xs:decimal"/>
+            <xs:element name="notes"       type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="orderId" type="xs:string"          use="required"/>
+        <xs:attribute name="status"  type="tns:OrderStatusType" use="required"/>
+    </xs:complexType>
+
+    <xs:element name="order" type="tns:OrderType"/>
+
+</xs:schema>
